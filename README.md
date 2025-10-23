@@ -28,24 +28,6 @@ O desafio foi **transformar um protótipo feito no Figma em um site real, funcio
 
 ---
 
-## 📂 Estrutura do projeto
-
-ReciclaTech/
-├── index.html
-├── css/
-│   └── style.css
-├── scss/
-│   └── style.scss
-├── img/
-│   ├── logo.png
-│   ├── logo2.png
-│   ├── fones.png
-│   ├── notebook.png
-│   ├── smartphones.png
-│   └── icones...
-
----
-
 ## 🌐 Links do projeto
 
 - **Vercel (deploy do site):** [https://reciclatech.vercel.app](https://reciclatech.vercel.app) *(em construção)*
