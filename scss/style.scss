@@ -1,124 +1,124 @@
 /* 
-   Eu defini as variáveis para cores porque no Figma o design usa essas exatas. 
-   Variáveis SCSS (com $) ajudam a manter consistência e facilitar mudanças futuras – se eu quiser trocar o verde, mudo só aqui!
+   Variáveis de Cores
+   Definidas para manter consistência visual e facilitar alterações futuras
 */
-
-$verde-principal: #16A34A;  // Verde primário para CTAs e destaques
-$verde-escuro: #15803D;     // Verde hover para botões
-$azul-principal: #2563EB;   // Azul para adquirentes
-$fundo-claro: #F0FDF4;      // Fundo verde claro suave
-$fundo-caixas: #F3F5F8;     // Fundo cinza para cards
-$titulo: #1F2937;           // Cor dos títulos principais
-$subtitulo: #4B5563;        // Cor dos subtítulos e textos secundários
-$cinza-cta: #E5E7EB;        // Cinza para bordas e divisores
+$verde-principal: #16A34A;
+$verde-escuro: #15803D;
+$azul-principal: #2563EB;
+$fundo-claro: #F0FDF4;
+$fundo-caixas: #F3F5F8;
+$titulo: #1F2937;
+$subtitulo: #4B5563;
+$cinza-cta: #E5E7EB;
 
 /* 
-   Reset Global: O seletor * zera tudo para evitar problemas de browsers diferentes, 
+   Reset Global
+   Zera margens, paddings e define box-sizing para melhor controle de dimensões
 */
 * {
-    margin: 0; 
+    margin: 0;
     padding: 0;
-    box-sizing: border-box; // Serve para alterar o modelo de caixa para incluir padding e bordas no cálculo
+    box-sizing: border-box;
 }
 
 /* 
-   Body: Configuração base da página
+   Body
+   Configuração base da página com fonte e cor padrão
 */
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; // Serve para definir a fonte principal como 'Inter', os fallbacks incluem fontes do sistema e sans-serif generica, para garantir compatibilidade
-    color: $titulo; // Define a cor do texto padrão como a variável, aplicada a todo o texto não sobrescrito
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: $titulo;
 }
 
 /* 
-   Container Padrão: Limita largura do conteúdo e centraliza
+   Container Padrão
+   Wrapper para limitar largura e centralizar conteúdo
 */
 .container {
-    max-width: 1200px; // Seletor para classes, usado como wrapper para seções, evitando assim que o site fique gigante em telas 4k.
-    margin: 0 auto; // Limita a largura máxima, de modo que evita que o conteúdo se estenda demais em telas grandes
-    padding: 0 24px; // Cria espaços nas bordas em telas menores
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
 /* 
-   Header: Barra de navegação superior
+   Header
+   Cabeçalho fixo com navegação
 */
 .header {
     background: white;
     padding: 16px 0;
-    border-bottom: 1px solid $cinza-cta; // Adiciona uma borda inferior fina de 1px com cor para separar o conteúdo 
+    border-bottom: 1px solid $cinza-cta;
 
-    .container { // Serve para ao aninhamento SCSS para o .container dentro do header
-        display: flex; // Usa flexbox para um layout flexível
-        justify-content: space-between; // Distribui itens (logo e nav) com espaço entre eles
+    nav.container {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
     }
 
-    // Logo da marca
     .logo {
-        img { // Aninhamento para imagens dentro da logo
-            height: 32px; 
+        display: inline-block;
+
+        img {
+            height: 32px;
         }
     }
 
-    // Navegação principal
-    .nav {
+    .nav-menu {
         display: flex;
         align-items: center;
         gap: 32px;
+        list-style: none;
 
-        // Links de navegação
-        a { // Aninhamento para links <a>
+        li {
+            display: inline-block;
+        }
+
+        a {
             color: $subtitulo;
-            text-decoration: none; // Remove o sublinhado padrão de links
+            text-decoration: none;
             font-size: 16px;
-            transition: color 0.3s; // Serve para dar uma animação suave de 0.3s para mudança de cor
+            transition: color 0.3s;
 
-            &:hover { // É uma pseudo-classe para hover (o & se refere ao seletor pai a)
-                color: $verde-principal; // Muda a cor para verde no hover
+            &:hover {
+                color: $verde-principal;
             }
         }
 
-        // Botão primário do header
         .btn-primary {
             background: $verde-principal;
             color: white;
             border: none;
             padding: 10px 20px;
-            border-radius: 6px; // Arredonda a borda
+            border-radius: 6px;
             font-size: 16px;
-            cursor: pointer; // O cursor muda para mãozinha no hover
+            cursor: pointer;
             font-weight: 500;
-            transition: background 0.3s; // Animação para mudança de fundo
+            transition: background 0.3s;
 
             &:hover {
-                background: $verde-escuro; // Serve para trazer um fundo mais escuro no hover
+                background: $verde-escuro;
             }
         }
     }
 }
 
 /* 
-   Hero Section: Seção principal da página com CTA, uso o flex para lado esquerdo (texto + botões) e direito (imagem). 
-   Botões com ícones: filter no img inverte cores para combinar com fundo.
-*/
-.hero {
-    background: white;
-    padding: 80px 0;
+   Hero Section
+   Seção principal com destaque e CTAs
 */
 .hero {
     background: white;
     padding: 80px 0;
 
     .container {
-        display: flex; // Serve para dividir em dois lados
+        display: flex;
         align-items: center;
         gap: 60px;
     }
 
-    // Lado esquerdo - Conteúdo textual
-    .hero-left { // Seletor para conteúdo textual
-        flex: 1; // Cresce para ocupar espaço igual
+    .hero-content {
+        flex: 1;
 
-        // Título principal
         h1 {
             font-size: 48px;
             font-weight: 700;
@@ -127,20 +127,17 @@ body {
             margin-bottom: 20px;
         }
 
-        // Descrição 
-        p { 
+        p {
             font-size: 18px;
-            color: $subtitulo; 
+            color: $subtitulo;
             line-height: 1.6;
             margin-bottom: 32px;
         }
 
-        // Container dos botões de ação
         .hero-buttons {
             display: flex;
             gap: 16px;
 
-            // Estilos base dos botões
             button {
                 padding: 12px 24px;
                 border-radius: 8px;
@@ -152,13 +149,8 @@ body {
                 gap: 8px;
                 border: none;
                 transition: all 0.3s;
-
-                img {
-                    filter: brightness(0) invert(1); // Serve para inverter cores da imagem para branco (para os botões que tem fundo escuro)
-                }
             }
 
-            // Botão "Quero doar"
             .btn-doar {
                 background: $verde-principal;
                 color: white;
@@ -172,34 +164,28 @@ body {
                 }
             }
 
-            // Botão "Quero adquirir"
             .btn-adquirir {
                 background: white;
                 color: $azul-principal;
                 border: 2px solid $azul-principal;
-
-                img {
-                    filter: none;
-                }
 
                 &:hover {
                     background: $azul-principal;
                     color: white;
 
                     img {
-                        filter: brightness(0) invert(1); // Icone branco no hover
+                        filter: brightness(0) invert(1);
                     }
                 }
             }
         }
     }
-}
 
-    // Lado direito - Imagem ilustrativa
-    .hero-right {
+    .hero-image {
         flex: 1;
         display: flex;
         justify-content: center;
+        margin: 0;
 
         .recycle-icon {
             max-width: 100%;
@@ -209,9 +195,10 @@ body {
 }
 
 /* 
-   Stats Section:  Seção de estatísticas e números, utilizando grid de 3 colunas para stats – simples e impactante. 
+   Stats Section
+   Seção de estatísticas com números de impacto
 */
-.stats { 
+.stats {
     background: $fundo-caixas;
     padding: 60px 0;
 
@@ -221,11 +208,9 @@ body {
         gap: 40px;
     }
 
-    // Card individual de estatística
     .stat-card {
         text-align: center;
 
-        // Número grande
         h2 {
             font-size: 48px;
             font-weight: 700;
@@ -233,7 +218,6 @@ body {
             margin-bottom: 8px;
         }
 
-        // Descrição da estatística
         p {
             font-size: 16px;
             color: $subtitulo;
@@ -242,14 +226,13 @@ body {
 }
 
 /* 
-   Como Funciona Section: Seção explicativa do processo, usando grid de 2 colunas para doadores/adquirentes.
-   utilizei cada card com a borda esquerda colorida para diferenciação e os steps com círculos numerados – bom para fluxos sequenciais.
+   Como Funciona Section
+   Explicação do processo para doadores e adquirentes
 */
 .how-works {
     padding: 80px 0;
     background: white;
 
-    // Título principal
     h2 {
         font-size: 40px;
         font-weight: 700;
@@ -258,7 +241,6 @@ body {
         margin-bottom: 12px;
     }
 
-    // Subtítulo
     .subtitle {
         text-align: center;
         font-size: 20px;
@@ -266,28 +248,24 @@ body {
         margin-bottom: 60px;
     }
 
-    // Grid de cards (doadores e adquirentes)
     .how-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); // Grid de 2 colunas para cards de doadores/adquirentes
+        grid-template-columns: repeat(2, 1fr);
         gap: 32px;
     }
 
-    // Card individual (doador ou adquirente)
     .how-card {
         background: $fundo-caixas;
         padding: 32px;
         border-radius: 12px;
-        border-left: 4px solid transparent; // Borda sutil no lado esquerdo
+        border-left: 4px solid transparent;
 
-        // Header do card com ícone e título
         .how-header {
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 16px;
 
-            // Container do ícone
             .icon-box {
                 width: 56px;
                 height: 56px;
@@ -296,17 +274,14 @@ body {
                 align-items: center;
                 justify-content: center;
 
-                // Fundo verde para doadores
                 &.green {
                     background: $fundo-claro;
                 }
 
-                // Fundo azul para adquirentes
                 &.blue {
                     background: #EFF6FF;
                 }
 
-                // Ícones maiores 
                 img {
                     width: 40px;
                     height: 40px;
@@ -319,10 +294,9 @@ body {
             }
         }
 
-        // Borda colorida para cada tipo de card
         &.doadores {
             border-left-color: $verde-principal;
-            
+
             .how-header h3 {
                 color: $verde-principal;
             }
@@ -330,32 +304,29 @@ body {
 
         &.adquirentes {
             border-left-color: $azul-principal;
-            
+
             .how-header h3 {
                 color: $azul-principal;
             }
         }
 
-        // Descrição do processo
         .description {
             color: $subtitulo;
             margin-bottom: 32px;
             font-size: 16px;
         }
 
-        // Container dos steps
         .steps {
             display: flex;
             flex-direction: column;
             gap: 24px;
+            list-style: none;
         }
 
-        // Item individual de step
         .step-item {
             display: flex;
             gap: 16px;
 
-            // Número do step (círculo colorido)
             .step-number {
                 width: 40px;
                 height: 40px;
@@ -368,13 +339,11 @@ body {
                 font-weight: 600;
                 flex-shrink: 0;
 
-                // Variação azul para adquirentes
                 &.blue {
                     background: $azul-principal;
                 }
             }
 
-            // Conteúdo textual do step
             .step-content {
                 h4 {
                     font-size: 16px;
@@ -391,14 +360,15 @@ body {
         }
     }
 }
+
 /* 
-   Products Section: Seção de produtos disponíveis, usando grid de 3 colunas.
+   Products Section
+   Grid de produtos disponíveis
 */
 .products {
     padding: 80px 0;
     background: $fundo-caixas;
 
-    // Título principal
     h2 {
         font-size: 40px;
         font-weight: 700;
@@ -407,7 +377,6 @@ body {
         text-align: center;
     }
 
-    // Subtítulo
     .subtitle {
         font-size: 18px;
         color: $subtitulo;
@@ -418,16 +387,14 @@ body {
         margin-right: auto;
     }
 
-    // Grid de produtos
     .products-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 32px;
     }
 
-    // Card individual de produto
     .product-card {
-        background: #fff;
+        background: white;
         border: 2px solid $verde-principal;
         border-radius: 12px;
         padding: 24px;
@@ -436,20 +403,18 @@ body {
 
         &:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
 
-        // Imagem
         .product-image {
             width: 100%;
             height: 280px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin: 0 0 20px;
             border-radius: 8px;
             overflow: hidden;
-            background: transparent;
 
             img {
                 width: 100%;
@@ -458,7 +423,6 @@ body {
             }
         }
 
-        // Nome do produto
         h3 {
             font-size: 20px;
             font-weight: 600;
@@ -466,7 +430,6 @@ body {
             margin-bottom: 12px;
         }
 
-        // Descrição
         p {
             font-size: 14px;
             color: $subtitulo;
@@ -474,7 +437,6 @@ body {
             line-height: 1.5;
         }
 
-        // Botão
         .btn-product {
             background: $verde-principal;
             color: white;
@@ -495,13 +457,13 @@ body {
 }
 
 /* 
-   Testimoials Section: Seção de depoimentos de usuários
+   Testimonials Section
+   Depoimentos de usuários
 */
 .testimonials {
     padding: 80px 0;
     background: white;
 
-    // Título principal
     h2 {
         font-size: 40px;
         font-weight: 700;
@@ -510,7 +472,6 @@ body {
         margin-bottom: 12px;
     }
 
-    // Subtítulo
     .subtitle {
         text-align: center;
         font-size: 18px;
@@ -518,48 +479,46 @@ body {
         margin-bottom: 48px;
     }
 
-    // Grid de depoimentos
     .testimonials-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); // 3 colunas
+        grid-template-columns: repeat(3, 1fr);
         gap: 32px;
     }
 
-    // Card individual de depoimento
     .testimonial-card {
         background: transparent;
         padding: 32px;
         border-radius: 12px;
         transition: transform 0.3s, box-shadow 0.3s;
-        border: 1px solid rgba(125, 125, 125, 0.629); // tom de cinza claro exato para contraste suave
-        border-left: 4px solid rgba(125, 125, 125, 0.629); // Serve para deixar a borda esquerda com uma borda mais grossinha (4px)
+        border: 1px solid rgba(125, 125, 125, 0.629);
+        border-left: 4px solid rgba(125, 125, 125, 0.629);
 
         &:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
         }
 
-        // Estrelas de avaliação
         .stars {
             font-size: 18px;
             margin-bottom: 16px;
         }
 
-        // Texto do depoimento
-        p {
-            font-size: 16px;
-            color: $titulo;
-            line-height: 1.6;
-            margin-bottom: 24px;
+        blockquote {
+            margin: 0;
+
+            p {
+                font-size: 16px;
+                color: $titulo;
+                line-height: 1.6;
+                margin-bottom: 24px;
+            }
         }
 
-        // Informações do autor
         .author {
             display: flex;
             align-items: center;
             gap: 12px;
 
-            // Avatar do autor
             .avatar {
                 width: 40px;
                 height: 40px;
@@ -568,12 +527,10 @@ body {
                 align-items: center;
                 justify-content: center;
 
-                // Fundo verde para doadores
                 &.green {
                     background: $fundo-claro;
                 }
 
-                // Fundo azul para adquirentes
                 &.blue {
                     background: #EFF6FF;
                 }
@@ -584,7 +541,6 @@ body {
                 }
             }
 
-            // Nome e tipo do autor
             .author-info {
                 display: flex;
                 flex-direction: column;
@@ -605,14 +561,14 @@ body {
 }
 
 /* 
-   CTA Section: Chamada de ação
+   CTA Section
+   Chamada final para ação
 */
 .cta {
     padding: 80px 0;
     background: $fundo-caixas;
     text-align: center;
 
-    // Título
     h2 {
         font-size: 40px;
         font-weight: 700;
@@ -620,7 +576,6 @@ body {
         color: $titulo;
     }
 
-    // Descrição
     p {
         font-size: 20px;
         margin-bottom: 32px;
@@ -628,7 +583,6 @@ body {
         color: $subtitulo;
     }
 
-    // Container dos botões
     .cta-buttons {
         display: flex;
         gap: 16px;
@@ -643,7 +597,6 @@ body {
             transition: all 0.3s;
         }
 
-        // Botão primário
         .btn-cta-primary {
             background: $verde-principal;
             color: white;
@@ -654,7 +607,6 @@ body {
             }
         }
 
-        // Botão secundário
         .btn-cta-secondary {
             background: transparent;
             color: $verde-principal;
@@ -669,23 +621,21 @@ body {
 }
 
 /* 
-   Footer: Rodapé da página
+   Footer
+   Rodapé com informações e links
 */
 .footer {
     background: $titulo;
     color: white;
     padding: 60px 0 30px;
 
-    // Grid de colunas do footer
     .footer-grid {
         display: grid;
-        grid-template-columns: 1.5fr 1fr 1fr 1fr; // Serve para gerar 4 colunas, sendo a primeira a mais larga
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
         gap: 40px;
     }
 
-    // Coluna individual do footer
     .footer-col {
-        // Logo do footer
         .footer-logo {
             display: flex;
             align-items: center;
@@ -701,7 +651,6 @@ body {
             }
         }
 
-        // Texto padrão
         p {
             font-size: 14px;
             line-height: 1.6;
@@ -709,14 +658,16 @@ body {
             margin-bottom: 16px;
         }
 
-        // Títulos das seções
         h4 {
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 16px;
         }
 
-        // Links
+        ul {
+            list-style: none;
+        }
+
         a {
             display: block;
             color: white;
@@ -731,18 +682,17 @@ body {
             }
         }
 
-        // Descrição especial do footer
         .footer-descricao {
             font-size: 14px;
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.8;
         }
 
-        // Redes sociais
         .social-links {
             display: flex;
             gap: 12px;
             margin-top: 16px;
+            list-style: none;
 
             .social {
                 width: 40px;
@@ -758,7 +708,6 @@ body {
                     transform: translateY(-3px);
                 }
 
-                // Cores específicas de cada rede
                 &.facebook {
                     background: #1877F2;
                     color: white;
@@ -781,45 +730,41 @@ body {
             }
         }
     }
-}
 
-// Copyright no rodapé
-.footer-bottom {
-    padding: 24px 0;
-    text-align: center;
-}
+    .footer-bottom {
+        padding: 24px 0;
+        text-align: center;
+    }
 
-.footer-copyright {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
+    .footer-copyright {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+    }
 }
 
 /* 
-   Responsividade: Ajustes para telas médias (Tablet: até 1024px) - Integra ajustes de products de 992px
+   RESPONSIVIDADE - TABLET
+   Ajustes para telas médias até 1024px
 */
 @media (max-width: 1024px) {
-    // Container com padding ligeiramente reduzido
     .container {
         padding: 0 20px;
     }
 
-    // Hero vira coluna única
     .hero .container {
         flex-direction: column;
         gap: 40px;
         text-align: center;
     }
 
-    .hero .hero-left .hero-buttons {
+    .hero .hero-content .hero-buttons {
         justify-content: center;
     }
 
-    // Como funciona vira coluna única
     .how-grid {
         grid-template-columns: 1fr;
     }
 
-    // Produtos em 2 colunas (integra de 992px)
     .products {
         padding: 60px 0;
 
@@ -832,7 +777,7 @@ body {
         }
 
         .products-grid {
-            grid-template-columns: repeat(2, 1fr); // Muda para 2 colunas
+            grid-template-columns: repeat(2, 1fr);
             gap: 24px;
         }
 
@@ -858,17 +803,14 @@ body {
         }
     }
 
-    // Depoimentos em coluna única
     .testimonials-grid {
         grid-template-columns: 1fr;
     }
 
-    // Footer em 2 colunas
     .footer .footer-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    // Ajustes gerais de padding para seções
     .hero,
     .how-works,
     .testimonials,
@@ -884,8 +826,7 @@ body {
         padding: 50px 0 25px;
     }
 
-    // Títulos menores
-    .hero-left h1 {
+    .hero-content h1 {
         font-size: 40px;
     }
 
@@ -901,7 +842,6 @@ body {
         font-size: 18px;
     }
 
-    // Stats em 2 colunas para tablet
     .stats .container {
         grid-template-columns: repeat(2, 1fr);
         gap: 32px;
@@ -911,31 +851,25 @@ body {
         font-size: 40px;
     }
 
-    // Cards com padding ajustado
-    .how-card {
-        padding: 28px;
-    }
-
+    .how-card,
     .testimonial-card {
         padding: 28px;
     }
 }
 
 /* 
-   Responsividade: Ajustes para telas pequenas (Mobile: até 768px) - Integra ajustes de products de 600px
+   RESPONSIVIDADE - MOBILE
+   Ajustes para telas pequenas até 768px
 */
 @media (max-width: 768px) {
-    // Container com padding reduzido
     .container {
         padding: 0 18px;
     }
 
-    // Esconde menu de navegação no mobile
-    .header .nav {
+    .header .nav-menu {
         display: none;
     }
 
-    // Header padding reduzido
     .header {
         padding: 12px 0;
     }
@@ -944,15 +878,14 @@ body {
         height: 28px;
     }
 
-    // Hero mobile
     .hero {
         padding: 60px 0;
 
-        .hero-left h1 {
+        .hero-content h1 {
             font-size: 32px;
         }
 
-        .hero-left p {
+        .hero-content p {
             font-size: 16px;
         }
 
@@ -971,25 +904,22 @@ body {
             }
         }
 
-        .hero-right .recycle-icon {
+        .hero-image .recycle-icon {
             max-width: 80%;
         }
     }
 
-    // Stats em coluna única
     .stats .container {
         grid-template-columns: 1fr;
         gap: 32px;
     }
 
-    // Títulos menores no mobile
     .how-works h2,
     .testimonials h2,
     .cta h2 {
         font-size: 32px;
     }
 
-    // Subtítulos
     .how-works .subtitle,
     .testimonials .subtitle,
     .cta p {
@@ -997,7 +927,6 @@ body {
         margin-bottom: 40px;
     }
 
-    // Como funciona mobile
     .how-works {
         padding: 60px 0;
     }
@@ -1051,7 +980,6 @@ body {
         }
     }
 
-    // Produtos em coluna única (integra de 600px)
     .products {
         padding: 50px 0;
 
@@ -1065,7 +993,7 @@ body {
         }
 
         .products-grid {
-            grid-template-columns: 1fr; // Uma coluna única
+            grid-template-columns: 1fr;
             gap: 20px;
         }
 
@@ -1092,7 +1020,6 @@ body {
         }
     }
 
-    // Testimonials
     .testimonials {
         padding: 60px 0;
     }
@@ -1110,7 +1037,7 @@ body {
             margin-bottom: 12px;
         }
 
-        p {
+        blockquote p {
             font-size: 15px;
             margin-bottom: 20px;
         }
@@ -1138,88 +1065,84 @@ body {
         }
     }
 
-    // CTA buttons mobile
     .cta {
         padding: 60px 0;
-    }
 
-    .cta .cta-buttons {
-       flex-direction: column;
-       align-items: center;
-       gap: 12px;
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
 
-        button {
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto;
-            padding: 12px 24px;
-            font-size: 16px;        
+            button {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+                padding: 12px 24px;
+                font-size: 16px;
+            }
         }
     }
 
-    // Footer mobile
     .footer {
         padding: 50px 0 20px;
-    }
 
-    .footer .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-    }
+        .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
 
-    .footer-col {
-        .footer-logo {
-            font-size: 16px;
+        .footer-col {
+            .footer-logo {
+                font-size: 16px;
 
-            img {
-                height: 24px;
+                img {
+                    height: 24px;
+                }
+            }
+
+            p,
+            a {
+                font-size: 13px;
+            }
+
+            h4 {
+                font-size: 15px;
+            }
+
+            .social-links {
+                gap: 10px;
+
+                .social {
+                    width: 36px;
+                    height: 36px;
+
+                    svg {
+                        width: 18px;
+                        height: 18px;
+                    }
+                }
             }
         }
 
-        p, a {
+        .footer-bottom {
+            padding: 20px 0;
+        }
+
+        .footer-copyright {
             font-size: 13px;
         }
-
-        h4 {
-            font-size: 15px;
-        }
-
-        .social-links {
-            gap: 10px;
-        }
-
-        .social {
-            width: 36px;
-            height: 36px;
-
-            svg {
-                width: 18px;
-                height: 18px;
-            }
-        }
-    }
-
-    .footer-bottom {
-        padding: 20px 0;
-    }
-
-    .footer-copyright {
-        font-size: 13px;
     }
 }
 
 /* 
-   RESPONSIVE - SMALL MOBILE
-   Ajustes para telas muito pequenas
-   CORREÇÃO 1: Melhorias extras de responsividade - Integra ajustes de products de 400px
+   RESPONSIVIDADE - MOBILE PEQUENO
+   Ajustes para telas muito pequenas até 480px
 */
 @media (max-width: 480px) {
-    // Container com padding reduzido
     .container {
         padding: 0 16px;
     }
 
-    // Header extra small
     .header {
         padding: 10px 0;
     }
@@ -1228,41 +1151,30 @@ body {
         height: 24px;
     }
 
-    // Hero extra small
     .hero {
         padding: 50px 0;
 
-        .hero-left h1 {
+        .hero-content h1 {
             font-size: 26px;
             line-height: 1.2;
         }
 
-        .hero-left p {
+        .hero-content p {
             font-size: 14px;
             margin-bottom: 24px;
         }
 
-        .hero-buttons {
-            flex-direction: column;
-            width: 100%;
-            gap: 10px;
-
-            button{
-                width: 100%;
-                max-width: 280px;
-                margin: 0 auto;
-                padding: 10px 20px;
-                font-size: 14px;
-                justify-content: center;
-            }
+        .hero-buttons button {
+            max-width: 280px;
+            padding: 10px 20px;
+            font-size: 14px;
         }
 
-        .hero-right .recycle-icon {
+        .hero-image .recycle-icon {
             max-width: 70%;
         }
     }
 
-    // Stats extra small
     .stats {
         padding: 40px 0;
 
@@ -1275,7 +1187,6 @@ body {
         }
     }
 
-    // Seções com padding reduzido
     .how-works,
     .products,
     .testimonials,
@@ -1283,7 +1194,6 @@ body {
         padding: 40px 0;
     }
 
-    // Títulos extra small
     .how-works h2,
     .products h2,
     .testimonials h2,
@@ -1291,7 +1201,6 @@ body {
         font-size: 26px;
     }
 
-    // Subtítulos extra small
     .how-works .subtitle,
     .products .subtitle,
     .testimonials .subtitle,
@@ -1300,7 +1209,6 @@ body {
         margin-bottom: 32px;
     }
 
-    // Como funciona extra small
     .how-card {
         padding: 20px;
 
@@ -1352,7 +1260,6 @@ body {
         }
     }
 
-    // Products extra small (integra de 400px)
     .products {
         h2 {
             font-size: 24px;
@@ -1366,7 +1273,7 @@ body {
             padding: 16px;
 
             .product-image {
-                height: 200px; // Imagem compacta
+                height: 200px;
             }
 
             h3 {
@@ -1381,7 +1288,6 @@ body {
         }
     }
 
-    // Testimonials extra small
     .testimonial-card {
         padding: 20px;
 
@@ -1390,7 +1296,7 @@ body {
             margin-bottom: 10px;
         }
 
-        p {
+        blockquote p {
             font-size: 14px;
             margin-bottom: 16px;
         }
@@ -1420,20 +1326,12 @@ body {
         }
     }
 
-    // CTA extra small
-    .cta {
-        .cta-buttons {
-            gap: 10px;
-
-            button {
-                padding: 10px 20px;
-                font-size: 14px;
-                max-width: 280px;
-            }
-        }
+    .cta .cta-buttons button {
+        padding: 10px 20px;
+        font-size: 14px;
+        max-width: 280px;
     }
 
-    // Footer extra small
     .footer {
         padding: 40px 0 20px;
 
@@ -1446,7 +1344,8 @@ body {
                 }
             }
 
-            p, a {
+            p,
+            a {
                 font-size: 12px;
             }
 
@@ -1465,12 +1364,12 @@ body {
             }
         }
 
+        .footer-bottom {
+            padding: 16px 0;
+        }
+
         .footer-copyright {
             font-size: 12px;
         }
-    }
-
-    .footer-bottom {
-        padding: 16px 0;
     }
 }
