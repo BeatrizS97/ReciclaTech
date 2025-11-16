@@ -17,6 +17,13 @@
                 <img src="./img/logo.png" alt="ReciclaTech">
             </a>
 
+            <!-- Botão hambúrguer (visível apenas no mobile) -->
+            <button class="menu-toggle" aria-label="Abrir menu de navegação">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
             <!-- Menu de navegação principal -->
             <ul class="nav-menu">
                 <li><a href="#como-funciona">Como Funciona</a></li>
@@ -45,7 +52,7 @@
                             <img src="./img/icone-presente.png" alt="" width="20" height="20">
                         </button>
                         <button class="btn-adquirir">
-                            Quero adquirir
+                            Quero Adquirir
                             <img src="./img/icone-coracao.png" alt="" width="20" height="20">
                         </button>
                     </div>
@@ -211,61 +218,70 @@
                 <h2>O que o pessoal tá falando?</h2>
                 <p class="subtitle">Histórias reais de quem já usou</p>
 
-                <!-- Grid de depoimentos -->
-                <div class="testimonials-grid">
-                    <!-- Depoimento de doador -->
-                    <article class="testimonial-card">
-                        <div class="stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
-                        <blockquote>
-                            <p>"Doei meu notebook antigo e em 2 dias já tinha alguém interessado! Ver a felicidade do
-                                estudante que recebeu não tem preço! 🤩"</p>
-                        </blockquote>
-                        <footer class="author">
-                            <div class="avatar green">
-                                <img src="./img/icone-doador.png" alt="" width="20" height="20">
-                            </div>
-                            <div class="author-info">
-                                <strong>João Santos</strong>
-                                <span>Doador</span>
-                            </div>
-                        </footer>
-                    </article>
+                <!-- Carrossel de depoimentos -->
+                <div class="testimonials-wrapper">
+                    <div class="testimonials-grid">
+                        <!-- Depoimento 1 -->
+                        <article class="testimonial-card">
+                            <div class="stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
+                            <blockquote>
+                                <p>"Doei meu notebook antigo e em 2 dias já tinha alguém interessado! Ver a felicidade
+                                    do estudante que recebeu não tem preço! 🤩"</p>
+                            </blockquote>
+                            <footer class="author">
+                                <div class="avatar green">
+                                    <img src="./img/icone-doador.png" alt="" width="20" height="20">
+                                </div>
+                                <div class="author-info">
+                                    <strong>João Santos</strong>
+                                    <span>Doador</span>
+                                </div>
+                            </footer>
+                        </article>
 
-                    <!-- Depoimento de adquirente -->
-                    <article class="testimonial-card">
-                        <div class="stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
-                        <blockquote>
-                            <p>"Consegui meu iPhone 12 em perfeito estado! A dona anterior cuidou super bem. Economizei
-                                uma grana e ainda ajudei o meio ambiente! 🌱"</p>
-                        </blockquote>
-                        <footer class="author">
-                            <div class="avatar blue">
-                                <img src="./img/icone-adquirente.png" alt="" width="20" height="20">
-                            </div>
-                            <div class="author-info">
-                                <strong>Maria Silva</strong>
-                                <span>Adquirente</span>
-                            </div>
-                        </footer>
-                    </article>
+                        <!-- Depoimento 2 -->
+                        <article class="testimonial-card">
+                            <div class="stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
+                            <blockquote>
+                                <p>"Consegui meu iPhone 12 em perfeito estado! A dona anterior cuidou super bem.
+                                    Economizei uma grana e ainda ajudei o meio ambiente! 🌱"</p>
+                            </blockquote>
+                            <footer class="author">
+                                <div class="avatar blue">
+                                    <img src="./img/icone-adquirente.png" alt="" width="20" height="20">
+                                </div>
+                                <div class="author-info">
+                                    <strong>Maria Silva</strong>
+                                    <span>Adquirente</span>
+                                </div>
+                            </footer>
+                        </article>
 
-                    <!-- Depoimento de usuária ativa -->
-                    <article class="testimonial-card">
-                        <div class="stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
-                        <blockquote>
-                            <p>"Plataforma incrível! Já doei 3 itens e adquiri 2. A comunidade é super respeitosa e o
-                                processo é muito fácil! 👏"</p>
-                        </blockquote>
-                        <footer class="author">
-                            <div class="avatar green">
-                                <img src="./img/icone-usuaria.png" alt="" width="20" height="20">
-                            </div>
-                            <div class="author-info">
-                                <strong>Ana Costa</strong>
-                                <span>Usuária ativa</span>
-                            </div>
-                        </footer>
-                    </article>
+                        <!-- Depoimento 3 -->
+                        <article class="testimonial-card">
+                            <div class="stars" aria-label="5 estrelas">⭐⭐⭐⭐⭐</div>
+                            <blockquote>
+                                <p>"Plataforma incrível! Já doei 3 itens e adquiri 2. A comunidade é super respeitosa e
+                                    o processo é muito fácil! 👏"</p>
+                            </blockquote>
+                            <footer class="author">
+                                <div class="avatar green">
+                                    <img src="./img/icone-usuaria.png" alt="" width="20" height="20">
+                                </div>
+                                <div class="author-info">
+                                    <strong>Ana Costa</strong>
+                                    <span>Usuária ativa</span>
+                                </div>
+                            </footer>
+                        </article>
+                    </div>
+
+                    <!-- Navegação do carrossel (visível apenas em tablet/mobile) -->
+                    <div class="testimonials-nav">
+                        <button class="nav-dot active" aria-label="Ver depoimento 1"></button>
+                        <button class="nav-dot" aria-label="Ver depoimento 2"></button>
+                        <button class="nav-dot" aria-label="Ver depoimento 3"></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -325,7 +341,6 @@
                     <h4>Redes Sociais</h4>
                     <p>Siga-nos para novidades e dicas de sustentabilidade!</p>
                     <ul class="social-links">
-                        <!-- Link Facebook -->
                         <li>
                             <a href="#" class="social facebook" aria-label="Facebook">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -334,7 +349,6 @@
                                 </svg>
                             </a>
                         </li>
-                        <!-- Link Instagram -->
                         <li>
                             <a href="#" class="social instagram" aria-label="Instagram">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -343,7 +357,6 @@
                                 </svg>
                             </a>
                         </li>
-                        <!-- Link Twitter -->
                         <li>
                             <a href="#" class="social twitter" aria-label="Twitter">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -364,11 +377,9 @@
             </div>
         </div>
     </footer>
+
+    <!-- Script para menu hambúrguer e carrossel -->
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
-
-
-
-
-</main>
