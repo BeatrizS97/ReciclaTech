@@ -34,12 +34,14 @@ body {
 
 /* 
    Header
-   Cabeçalho fixo com navegação
+   Cabeçalho com navegação e menu hambúrguer
 */
 .header {
   background: white;
   padding: 16px 0;
   border-bottom: 1px solid #E5E7EB;
+  position: relative;
+  /* Menu Hambúrguer (oculto no desktop) */
 }
 .header nav.container {
   display: flex;
@@ -48,9 +50,36 @@ body {
 }
 .header .logo {
   display: inline-block;
+  z-index: 1001;
 }
 .header .logo img {
   height: 32px;
+}
+.header .menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+.header .menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: #1F2937;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+.header .menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+.header .menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.header .menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
 }
 .header .nav-menu {
   display: flex;
@@ -390,11 +419,12 @@ body {
 
 /* 
    Testimonials Section
-   Depoimentos de usuários
+   Depoimentos com carrossel em mobile/tablet
 */
 .testimonials {
   padding: 80px 0;
   background: white;
+  /* Navegação do carrossel (oculta no desktop) */
 }
 .testimonials h2 {
   font-size: 40px;
@@ -409,6 +439,9 @@ body {
   color: #4B5563;
   margin-bottom: 48px;
 }
+.testimonials .testimonials-wrapper {
+  position: relative;
+}
 .testimonials .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -419,8 +452,10 @@ body {
   padding: 32px;
   border-radius: 12px;
   transition: transform 0.3s, box-shadow 0.3s;
-  border: 1px solid rgba(125, 125, 125, 0.629);
-  border-left: 4px solid rgba(125, 125, 125, 0.629);
+  border: 1px solid rgba(125, 125, 125, 0.3);
+  border-left: 4px solid rgba(125, 125, 125, 0.3);
+  display: flex;
+  flex-direction: column;
 }
 .testimonials .testimonial-card:hover {
   transform: translateY(-4px);
@@ -429,20 +464,25 @@ body {
 .testimonials .testimonial-card .stars {
   font-size: 18px;
   margin-bottom: 16px;
+  white-space: nowrap;
 }
 .testimonials .testimonial-card blockquote {
   margin: 0;
+  flex: 1;
 }
 .testimonials .testimonial-card blockquote p {
   font-size: 16px;
   color: #1F2937;
   line-height: 1.6;
   margin-bottom: 24px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 .testimonials .testimonial-card .author {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-top: auto;
 }
 .testimonials .testimonial-card .author .avatar {
   width: 40px;
@@ -451,6 +491,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 .testimonials .testimonial-card .author .avatar.green {
   background: #F0FDF4;
@@ -465,6 +506,7 @@ body {
 .testimonials .testimonial-card .author .author-info {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 .testimonials .testimonial-card .author .author-info strong {
   font-size: 14px;
@@ -474,6 +516,29 @@ body {
 .testimonials .testimonial-card .author .author-info span {
   font-size: 12px;
   color: #4B5563;
+}
+.testimonials .testimonials-nav {
+  display: none;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+.testimonials .testimonials-nav .nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #E5E7EB;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.testimonials .testimonials-nav .nav-dot.active {
+  background: #16A34A;
+  width: 32px;
+  border-radius: 6px;
+}
+.testimonials .testimonials-nav .nav-dot:hover {
+  background: rgb(58.5189189189, 228.4810810811, 121.2);
 }
 
 /* 
@@ -631,12 +696,46 @@ body {
 }
 
 /* 
-   RESPONSIVIDADE - TABLET
-   Ajustes para telas médias até 1024px
+   RESPONSIVIDADE - TABLET (até 1024px)
 */
 @media (max-width: 1024px) {
   .container {
     padding: 0 20px;
+  }
+  /* Menu hambúrguer visível */
+  .header .menu-toggle {
+    display: flex;
+  }
+  .header .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: white;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 32px 32px;
+    gap: 24px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+  }
+  .header .nav-menu.active {
+    right: 0;
+  }
+  .header .nav-menu li {
+    width: 100%;
+    display: block;
+  }
+  .header .nav-menu a {
+    display: block;
+    padding: 12px 0;
+    font-size: 18px;
+  }
+  .header .nav-menu .btn-primary {
+    width: 100%;
+    text-align: center;
   }
   .hero .container {
     flex-direction: column;
@@ -655,89 +754,36 @@ body {
   .products h2 {
     font-size: 34px;
   }
-  .products .subtitle {
-    font-size: 16px;
-  }
   .products .products-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
-  .products .product-card {
-    padding: 20px;
-  }
-  .products .product-card .product-image {
-    height: 240px;
-  }
-  .products .product-card h3 {
-    font-size: 18px;
-  }
-  .products .product-card p {
-    font-size: 13px;
-  }
-  .products .product-card .btn-product {
-    width: 60%;
-    font-size: 13px;
-  }
-  .testimonials-grid {
+  /* Carrossel de depoimentos ativado */
+  .testimonials .testimonials-grid {
     grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .testimonials .testimonials-grid .testimonial-card {
+    display: none;
+  }
+  .testimonials .testimonials-grid .testimonial-card:first-child {
+    display: flex;
+  }
+  .testimonials .testimonials-nav {
+    display: flex;
   }
   .footer .footer-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .hero,
-  .how-works,
-  .testimonials,
-  .cta {
-    padding: 60px 0;
-  }
-  .stats {
-    padding: 50px 0;
-  }
-  .footer {
-    padding: 50px 0 25px;
-  }
-  .hero-content h1 {
-    font-size: 40px;
-  }
-  .how-works h2,
-  .testimonials h2,
-  .cta h2 {
-    font-size: 36px;
-  }
-  .how-works .subtitle,
-  .testimonials .subtitle,
-  .cta p {
-    font-size: 18px;
-  }
   .stats .container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-  }
-  .stat-card h2 {
-    font-size: 40px;
-  }
-  .how-card,
-  .testimonial-card {
-    padding: 28px;
   }
 }
 /* 
-   RESPONSIVIDADE - MOBILE
-   Ajustes para telas pequenas até 768px
+   RESPONSIVIDADE - MOBILE (até 768px)
 */
 @media (max-width: 768px) {
-  .container {
-    padding: 0 18px;
-  }
-  .header .nav-menu {
-    display: none;
-  }
-  .header {
-    padding: 12px 0;
-  }
-  .logo img {
-    height: 28px;
-  }
   .hero {
     padding: 60px 0;
   }
@@ -757,234 +803,43 @@ body {
     justify-content: center;
     max-width: 300px;
     margin: 0 auto;
-    padding: 12px 24px;
-    font-size: 16px;
-  }
-  .hero .hero-image .recycle-icon {
-    max-width: 80%;
   }
   .stats .container {
     grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .how-works h2,
-  .testimonials h2,
-  .cta h2 {
-    font-size: 32px;
-  }
-  .how-works .subtitle,
-  .testimonials .subtitle,
-  .cta p {
-    font-size: 16px;
-    margin-bottom: 40px;
-  }
-  .how-works {
-    padding: 60px 0;
-  }
-  .how-card {
-    padding: 24px;
-  }
-  .how-card .how-header {
-    gap: 10px;
-  }
-  .how-card .how-header .icon-box {
-    width: 50px;
-    height: 50px;
-  }
-  .how-card .how-header .icon-box img {
-    width: 36px;
-    height: 36px;
-  }
-  .how-card .how-header h3 {
-    font-size: 22px;
-  }
-  .how-card .description {
-    font-size: 15px;
-    margin-bottom: 24px;
-  }
-  .how-card .steps {
-    gap: 20px;
-  }
-  .how-card .step-item {
-    gap: 12px;
-  }
-  .how-card .step-item .step-number {
-    width: 36px;
-    height: 36px;
-    font-size: 14px;
-  }
-  .how-card .step-item .step-content h4 {
-    font-size: 15px;
-  }
-  .how-card .step-item .step-content p {
-    font-size: 13px;
   }
   .products {
     padding: 50px 0;
   }
-  .products h2 {
-    font-size: 28px;
-  }
-  .products .subtitle {
-    font-size: 15px;
-    margin-bottom: 32px;
-  }
   .products .products-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
   }
-  .products .product-card {
-    padding: 18px;
-  }
-  .products .product-card .product-image {
-    height: 220px;
-  }
-  .products .product-card h3 {
-    font-size: 16px;
-  }
-  .products .product-card p {
-    font-size: 13px;
-  }
-  .products .product-card .btn-product {
-    width: 80%;
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-  .testimonials {
-    padding: 60px 0;
-  }
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .testimonial-card {
+  .testimonials .testimonial-card {
     padding: 24px;
   }
-  .testimonial-card .stars {
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-  .testimonial-card blockquote p {
-    font-size: 15px;
-    margin-bottom: 20px;
-  }
-  .testimonial-card .author {
-    gap: 10px;
-  }
-  .testimonial-card .author .avatar {
-    width: 36px;
-    height: 36px;
-  }
-  .testimonial-card .author .avatar img {
-    width: 32px;
-    height: 32px;
-  }
-  .testimonial-card .author .author-info strong {
-    font-size: 13px;
-  }
-  .testimonial-card .author .author-info span {
-    font-size: 11px;
-  }
-  .cta {
-    padding: 60px 0;
+  .footer .footer-grid {
+    grid-template-columns: 1fr;
   }
   .cta .cta-buttons {
     flex-direction: column;
     align-items: center;
-    gap: 12px;
   }
   .cta .cta-buttons button {
     width: 100%;
     max-width: 300px;
-    margin: 0 auto;
-    padding: 12px 24px;
-    font-size: 16px;
-  }
-  .footer {
-    padding: 50px 0 20px;
-  }
-  .footer .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .footer .footer-col .footer-logo {
-    font-size: 16px;
-  }
-  .footer .footer-col .footer-logo img {
-    height: 24px;
-  }
-  .footer .footer-col p,
-  .footer .footer-col a {
-    font-size: 13px;
-  }
-  .footer .footer-col h4 {
-    font-size: 15px;
-  }
-  .footer .footer-col .social-links {
-    gap: 10px;
-  }
-  .footer .footer-col .social-links .social {
-    width: 36px;
-    height: 36px;
-  }
-  .footer .footer-col .social-links .social svg {
-    width: 18px;
-    height: 18px;
-  }
-  .footer .footer-bottom {
-    padding: 20px 0;
-  }
-  .footer .footer-copyright {
-    font-size: 13px;
   }
 }
 /* 
-   RESPONSIVIDADE - MOBILE PEQUENO
-   Ajustes para telas muito pequenas até 480px
+   RESPONSIVIDADE - MOBILE PEQUENO (até 480px)
 */
 @media (max-width: 480px) {
-  .container {
-    padding: 0 16px;
-  }
-  .header {
-    padding: 10px 0;
-  }
-  .logo img {
-    height: 24px;
-  }
   .hero {
     padding: 50px 0;
   }
   .hero .hero-content h1 {
     font-size: 26px;
-    line-height: 1.2;
   }
   .hero .hero-content p {
     font-size: 14px;
-    margin-bottom: 24px;
-  }
-  .hero .hero-buttons button {
-    max-width: 280px;
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-  .hero .hero-image .recycle-icon {
-    max-width: 70%;
-  }
-  .stats {
-    padding: 40px 0;
-  }
-  .stats .stat-card h2 {
-    font-size: 36px;
-  }
-  .stats .stat-card p {
-    font-size: 14px;
-  }
-  .how-works,
-  .products,
-  .testimonials,
-  .cta {
-    padding: 40px 0;
   }
   .how-works h2,
   .products h2,
@@ -992,132 +847,10 @@ body {
   .cta h2 {
     font-size: 26px;
   }
-  .how-works .subtitle,
-  .products .subtitle,
-  .testimonials .subtitle,
-  .cta p {
-    font-size: 14px;
-    margin-bottom: 32px;
+  .testimonials .testimonials-grid {
+    max-width: 100%;
   }
-  .how-card {
+  .testimonials .testimonial-card {
     padding: 20px;
-  }
-  .how-card .how-header {
-    gap: 8px;
-  }
-  .how-card .how-header .icon-box {
-    width: 48px;
-    height: 48px;
-  }
-  .how-card .how-header .icon-box img {
-    width: 30px;
-    height: 30px;
-  }
-  .how-card .how-header h3 {
-    font-size: 20px;
-  }
-  .how-card .description {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-  .how-card .steps {
-    gap: 16px;
-  }
-  .how-card .step-item {
-    gap: 10px;
-  }
-  .how-card .step-item .step-number {
-    width: 32px;
-    height: 32px;
-    font-size: 13px;
-  }
-  .how-card .step-item .step-content h4 {
-    font-size: 14px;
-  }
-  .how-card .step-item .step-content p {
-    font-size: 12px;
-  }
-  .products h2 {
-    font-size: 24px;
-  }
-  .products .subtitle {
-    font-size: 14px;
-  }
-  .products .product-card {
-    padding: 16px;
-  }
-  .products .product-card .product-image {
-    height: 200px;
-  }
-  .products .product-card h3 {
-    font-size: 15px;
-  }
-  .products .product-card .btn-product {
-    width: 100%;
-    font-size: 12px;
-    padding: 8px 14px;
-  }
-  .testimonial-card {
-    padding: 20px;
-  }
-  .testimonial-card .stars {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  .testimonial-card blockquote p {
-    font-size: 14px;
-    margin-bottom: 16px;
-  }
-  .testimonial-card .author {
-    gap: 8px;
-  }
-  .testimonial-card .author .avatar {
-    width: 32px;
-    height: 32px;
-  }
-  .testimonial-card .author .avatar img {
-    width: 28px;
-    height: 28px;
-  }
-  .testimonial-card .author .author-info strong {
-    font-size: 12px;
-  }
-  .testimonial-card .author .author-info span {
-    font-size: 10px;
-  }
-  .cta .cta-buttons button {
-    padding: 10px 20px;
-    font-size: 14px;
-    max-width: 280px;
-  }
-  .footer {
-    padding: 40px 0 20px;
-  }
-  .footer .footer-col .footer-logo {
-    font-size: 15px;
-  }
-  .footer .footer-col .footer-logo img {
-    height: 22px;
-  }
-  .footer .footer-col p,
-  .footer .footer-col a {
-    font-size: 12px;
-  }
-  .footer .footer-col h4 {
-    font-size: 14px;
-  }
-  .footer .footer-col .social-links .social {
-    width: 32px;
-    height: 32px;
-  }
-  .footer .footer-col .social-links .social svg {
-    width: 16px;
-    height: 16px;
-  }
-  .footer .footer-bottom {
-    padding: 16px 0;
-  }
-  .footer .footer-copyright {
-    font-size: 12px;
   }
 }/*# sourceMappingURL=style.css.map */
