@@ -784,6 +784,10 @@ body {
    RESPONSIVIDADE - TELAS MÉDIAS (até 900px)
 */
 @media (max-width: 900px) {
+  .container {
+    padding: 0 32px;
+    max-width: 680px;
+  }
   .how-works {
     padding: 60px 0;
   }
@@ -796,42 +800,51 @@ body {
   }
   .how-works .how-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 28px;
   }
   .how-works .how-card {
-    padding: 24px;
+    padding: 28px;
+    max-width: 100%;
+  }
+  .how-works .how-card .how-header {
+    gap: 16px;
+    margin-bottom: 20px;
   }
   .how-works .how-card .how-header .icon-box {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
   }
   .how-works .how-card .how-header .icon-box img {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
   }
   .how-works .how-card .how-header h3 {
-    font-size: 20px;
+    font-size: 22px;
   }
   .how-works .how-card .description {
     font-size: 15px;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
+    line-height: 1.5;
   }
   .how-works .how-card .steps {
-    gap: 20px;
+    gap: 24px;
   }
   .how-works .how-card .step-item {
-    gap: 12px;
+    gap: 14px;
   }
   .how-works .how-card .step-item .step-number {
-    width: 36px;
-    height: 36px;
-    font-size: 14px;
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+    font-weight: 700;
   }
   .how-works .how-card .step-item .step-content h4 {
-    font-size: 15px;
+    font-size: 16px;
+    margin-bottom: 6px;
   }
   .how-works .how-card .step-item .step-content p {
-    font-size: 13px;
+    font-size: 14px;
+    line-height: 1.5;
   }
 }
 /* 
