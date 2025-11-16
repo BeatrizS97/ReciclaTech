@@ -16,7 +16,7 @@ $cinza-cta: #E5E7EB;
    Zera margens, paddings e define box-sizing para melhor controle de dimensões
 */
 * {
-    margin: 0;
+    margin: 0; 
     padding: 0;
     box-sizing: border-box;
 }
@@ -42,12 +42,13 @@ body {
 
 /* 
    Header
-   Cabeçalho fixo com navegação
+   Cabeçalho com navegação e menu hambúrguer
 */
 .header {
     background: white;
     padding: 16px 0;
     border-bottom: 1px solid $cinza-cta;
+    position: relative;
 
     nav.container {
         display: flex;
@@ -57,9 +58,44 @@ body {
 
     .logo {
         display: inline-block;
-
+        z-index: 1001;
+        
         img {
             height: 32px;
+        }
+    }
+
+    /* Menu Hambúrguer (oculto no desktop) */
+    .menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        z-index: 1001;
+
+        span {
+            width: 25px;
+            height: 3px;
+            background: $titulo;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        &.active {
+            span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            span:nth-child(2) {
+                opacity: 0;
+            }
+
+            span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
         }
     }
 
@@ -296,7 +332,7 @@ body {
 
         &.doadores {
             border-left-color: $verde-principal;
-
+            
             .how-header h3 {
                 color: $verde-principal;
             }
@@ -304,7 +340,7 @@ body {
 
         &.adquirentes {
             border-left-color: $azul-principal;
-
+            
             .how-header h3 {
                 color: $azul-principal;
             }
@@ -403,7 +439,7 @@ body {
 
         &:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
         .product-image {
@@ -458,7 +494,7 @@ body {
 
 /* 
    Testimonials Section
-   Depoimentos de usuários
+   Depoimentos com carrossel em mobile/tablet
 */
 .testimonials {
     padding: 80px 0;
@@ -479,6 +515,10 @@ body {
         margin-bottom: 48px;
     }
 
+    .testimonials-wrapper {
+        position: relative;
+    }
+
     .testimonials-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -490,27 +530,33 @@ body {
         padding: 32px;
         border-radius: 12px;
         transition: transform 0.3s, box-shadow 0.3s;
-        border: 1px solid rgba(125, 125, 125, 0.629);
-        border-left: 4px solid rgba(125, 125, 125, 0.629);
+        border: 1px solid rgba(125, 125, 125, 0.3);
+        border-left: 4px solid rgba(125, 125, 125, 0.3);
+        display: flex;
+        flex-direction: column;
 
         &:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
         }
 
         .stars {
             font-size: 18px;
             margin-bottom: 16px;
+            white-space: nowrap;
         }
 
         blockquote {
             margin: 0;
+            flex: 1;
 
             p {
                 font-size: 16px;
                 color: $titulo;
                 line-height: 1.6;
                 margin-bottom: 24px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
         }
 
@@ -518,6 +564,7 @@ body {
             display: flex;
             align-items: center;
             gap: 12px;
+            margin-top: auto;
 
             .avatar {
                 width: 40px;
@@ -526,6 +573,7 @@ body {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                flex-shrink: 0;
 
                 &.green {
                     background: $fundo-claro;
@@ -544,6 +592,7 @@ body {
             .author-info {
                 display: flex;
                 flex-direction: column;
+                min-width: 0;
 
                 strong {
                     font-size: 14px;
@@ -555,6 +604,34 @@ body {
                     font-size: 12px;
                     color: $subtitulo;
                 }
+            }
+        }
+    }
+
+    /* Navegação do carrossel (oculta no desktop) */
+    .testimonials-nav {
+        display: none;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 32px;
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: $cinza-cta;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            &.active {
+                background: $verde-principal;
+                width: 32px;
+                border-radius: 6px;
+            }
+
+            &:hover {
+                background: lighten($verde-principal, 20%);
             }
         }
     }
@@ -743,12 +820,54 @@ body {
 }
 
 /* 
-   RESPONSIVIDADE - TABLET
-   Ajustes para telas médias até 1024px
+   RESPONSIVIDADE - TABLET (até 1024px)
 */
 @media (max-width: 1024px) {
     .container {
         padding: 0 20px;
+    }
+
+    /* Menu hambúrguer visível */
+    .header {
+        .menu-toggle {
+            display: flex;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 80px 32px 32px;
+            gap: 24px;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+
+            &.active {
+                right: 0;
+            }
+
+            li {
+                width: 100%;
+                display: block;
+            }
+
+            a {
+                display: block;
+                padding: 12px 0;
+                font-size: 18px;
+            }
+
+            .btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+        }
     }
 
     .hero .container {
@@ -772,112 +891,46 @@ body {
             font-size: 34px;
         }
 
-        .subtitle {
-            font-size: 16px;
-        }
-
         .products-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 24px;
         }
-
-        .product-card {
-            padding: 20px;
-
-            .product-image {
-                height: 240px;
-            }
-
-            h3 {
-                font-size: 18px;
-            }
-
-            p {
-                font-size: 13px;
-            }
-
-            .btn-product {
-                width: 60%;
-                font-size: 13px;
-            }
-        }
     }
 
-    .testimonials-grid {
-        grid-template-columns: 1fr;
+    /* Carrossel de depoimentos ativado */
+    .testimonials {
+        .testimonials-grid {
+            grid-template-columns: 1fr;
+            max-width: 600px;
+            margin: 0 auto;
+            
+            .testimonial-card {
+                display: none;
+
+                &:first-child {
+                    display: flex;
+                }
+            }
+        }
+
+        .testimonials-nav {
+            display: flex;
+        }
     }
 
     .footer .footer-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .hero,
-    .how-works,
-    .testimonials,
-    .cta {
-        padding: 60px 0;
-    }
-
-    .stats {
-        padding: 50px 0;
-    }
-
-    .footer {
-        padding: 50px 0 25px;
-    }
-
-    .hero-content h1 {
-        font-size: 40px;
-    }
-
-    .how-works h2,
-    .testimonials h2,
-    .cta h2 {
-        font-size: 36px;
-    }
-
-    .how-works .subtitle,
-    .testimonials .subtitle,
-    .cta p {
-        font-size: 18px;
-    }
-
     .stats .container {
         grid-template-columns: repeat(2, 1fr);
-        gap: 32px;
-    }
-
-    .stat-card h2 {
-        font-size: 40px;
-    }
-
-    .how-card,
-    .testimonial-card {
-        padding: 28px;
     }
 }
 
 /* 
-   RESPONSIVIDADE - MOBILE
-   Ajustes para telas pequenas até 768px
+   RESPONSIVIDADE - MOBILE (até 768px)
 */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 18px;
-    }
-
-    .header .nav-menu {
-        display: none;
-    }
-
-    .header {
-        padding: 12px 0;
-    }
-
-    .logo img {
-        height: 28px;
-    }
-
     .hero {
         padding: 60px 0;
 
@@ -899,299 +952,57 @@ body {
                 justify-content: center;
                 max-width: 300px;
                 margin: 0 auto;
-                padding: 12px 24px;
-                font-size: 16px;
             }
-        }
-
-        .hero-image .recycle-icon {
-            max-width: 80%;
         }
     }
 
     .stats .container {
         grid-template-columns: 1fr;
-        gap: 32px;
-    }
-
-    .how-works h2,
-    .testimonials h2,
-    .cta h2 {
-        font-size: 32px;
-    }
-
-    .how-works .subtitle,
-    .testimonials .subtitle,
-    .cta p {
-        font-size: 16px;
-        margin-bottom: 40px;
-    }
-
-    .how-works {
-        padding: 60px 0;
-    }
-
-    .how-card {
-        padding: 24px;
-
-        .how-header {
-            gap: 10px;
-
-            .icon-box {
-                width: 50px;
-                height: 50px;
-
-                img {
-                    width: 36px;
-                    height: 36px;
-                }
-            }
-
-            h3 {
-                font-size: 22px;
-            }
-        }
-
-        .description {
-            font-size: 15px;
-            margin-bottom: 24px;
-        }
-
-        .steps {
-            gap: 20px;
-        }
-
-        .step-item {
-            gap: 12px;
-
-            .step-number {
-                width: 36px;
-                height: 36px;
-                font-size: 14px;
-            }
-
-            .step-content h4 {
-                font-size: 15px;
-            }
-
-            .step-content p {
-                font-size: 13px;
-            }
-        }
     }
 
     .products {
         padding: 50px 0;
 
-        h2 {
-            font-size: 28px;
-        }
-
-        .subtitle {
-            font-size: 15px;
-            margin-bottom: 32px;
-        }
-
         .products-grid {
             grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .product-card {
-            padding: 18px;
-
-            .product-image {
-                height: 220px;
-            }
-
-            h3 {
-                font-size: 16px;
-            }
-
-            p {
-                font-size: 13px;
-            }
-
-            .btn-product {
-                width: 80%;
-                padding: 8px 16px;
-                font-size: 13px;
-            }
         }
     }
 
     .testimonials {
-        padding: 60px 0;
+        .testimonial-card {
+            padding: 24px;
+        }
     }
 
-    .testimonials-grid {
+    .footer .footer-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
     }
 
-    .testimonial-card {
-        padding: 24px;
+    .cta .cta-buttons {
+        flex-direction: column;
+        align-items: center;
 
-        .stars {
-            font-size: 16px;
-            margin-bottom: 12px;
-        }
-
-        blockquote p {
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
-
-        .author {
-            gap: 10px;
-
-            .avatar {
-                width: 36px;
-                height: 36px;
-
-                img {
-                    width: 32px;
-                    height: 32px;
-                }
-            }
-
-            .author-info strong {
-                font-size: 13px;
-            }
-
-            .author-info span {
-                font-size: 11px;
-            }
-        }
-    }
-
-    .cta {
-        padding: 60px 0;
-
-        .cta-buttons {
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-
-            button {
-                width: 100%;
-                max-width: 300px;
-                margin: 0 auto;
-                padding: 12px 24px;
-                font-size: 16px;
-            }
-        }
-    }
-
-    .footer {
-        padding: 50px 0 20px;
-
-        .footer-grid {
-            grid-template-columns: 1fr;
-            gap: 32px;
-        }
-
-        .footer-col {
-            .footer-logo {
-                font-size: 16px;
-
-                img {
-                    height: 24px;
-                }
-            }
-
-            p,
-            a {
-                font-size: 13px;
-            }
-
-            h4 {
-                font-size: 15px;
-            }
-
-            .social-links {
-                gap: 10px;
-
-                .social {
-                    width: 36px;
-                    height: 36px;
-
-                    svg {
-                        width: 18px;
-                        height: 18px;
-                    }
-                }
-            }
-        }
-
-        .footer-bottom {
-            padding: 20px 0;
-        }
-
-        .footer-copyright {
-            font-size: 13px;
+        button {
+            width: 100%;
+            max-width: 300px;
         }
     }
 }
 
 /* 
-   RESPONSIVIDADE - MOBILE PEQUENO
-   Ajustes para telas muito pequenas até 480px
+   RESPONSIVIDADE - MOBILE PEQUENO (até 480px)
 */
 @media (max-width: 480px) {
-    .container {
-        padding: 0 16px;
-    }
-
-    .header {
-        padding: 10px 0;
-    }
-
-    .logo img {
-        height: 24px;
-    }
-
     .hero {
         padding: 50px 0;
 
         .hero-content h1 {
             font-size: 26px;
-            line-height: 1.2;
         }
 
         .hero-content p {
             font-size: 14px;
-            margin-bottom: 24px;
         }
-
-        .hero-buttons button {
-            max-width: 280px;
-            padding: 10px 20px;
-            font-size: 14px;
-        }
-
-        .hero-image .recycle-icon {
-            max-width: 70%;
-        }
-    }
-
-    .stats {
-        padding: 40px 0;
-
-        .stat-card h2 {
-            font-size: 36px;
-        }
-
-        .stat-card p {
-            font-size: 14px;
-        }
-    }
-
-    .how-works,
-    .products,
-    .testimonials,
-    .cta {
-        padding: 40px 0;
     }
 
     .how-works h2,
@@ -1201,175 +1012,13 @@ body {
         font-size: 26px;
     }
 
-    .how-works .subtitle,
-    .products .subtitle,
-    .testimonials .subtitle,
-    .cta p {
-        font-size: 14px;
-        margin-bottom: 32px;
-    }
-
-    .how-card {
-        padding: 20px;
-
-        .how-header {
-            gap: 8px;
-
-            .icon-box {
-                width: 48px;
-                height: 48px;
-
-                img {
-                    width: 30px;
-                    height: 30px;
-                }
-            }
-
-            h3 {
-                font-size: 20px;
-            }
+    .testimonials {
+        .testimonials-grid {
+            max-width: 100%;
         }
 
-        .description {
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .steps {
-            gap: 16px;
-        }
-
-        .step-item {
-            gap: 10px;
-
-            .step-number {
-                width: 32px;
-                height: 32px;
-                font-size: 13px;
-            }
-
-            .step-content {
-                h4 {
-                    font-size: 14px;
-                }
-
-                p {
-                    font-size: 12px;
-                }
-            }
-        }
-    }
-
-    .products {
-        h2 {
-            font-size: 24px;
-        }
-
-        .subtitle {
-            font-size: 14px;
-        }
-
-        .product-card {
-            padding: 16px;
-
-            .product-image {
-                height: 200px;
-            }
-
-            h3 {
-                font-size: 15px;
-            }
-
-            .btn-product {
-                width: 100%;
-                font-size: 12px;
-                padding: 8px 14px;
-            }
-        }
-    }
-
-    .testimonial-card {
-        padding: 20px;
-
-        .stars {
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        blockquote p {
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-
-        .author {
-            gap: 8px;
-
-            .avatar {
-                width: 32px;
-                height: 32px;
-
-                img {
-                    width: 28px;
-                    height: 28px;
-                }
-            }
-
-            .author-info {
-                strong {
-                    font-size: 12px;
-                }
-
-                span {
-                    font-size: 10px;
-                }
-            }
-        }
-    }
-
-    .cta .cta-buttons button {
-        padding: 10px 20px;
-        font-size: 14px;
-        max-width: 280px;
-    }
-
-    .footer {
-        padding: 40px 0 20px;
-
-        .footer-col {
-            .footer-logo {
-                font-size: 15px;
-
-                img {
-                    height: 22px;
-                }
-            }
-
-            p,
-            a {
-                font-size: 12px;
-            }
-
-            h4 {
-                font-size: 14px;
-            }
-
-            .social-links .social {
-                width: 32px;
-                height: 32px;
-
-                svg {
-                    width: 16px;
-                    height: 16px;
-                }
-            }
-        }
-
-        .footer-bottom {
-            padding: 16px 0;
-        }
-
-        .footer-copyright {
-            font-size: 12px;
+        .testimonial-card {
+            padding: 20px;
         }
     }
 }
