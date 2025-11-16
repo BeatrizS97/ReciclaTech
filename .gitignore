@@ -1,0 +1,64 @@
+# ============================================
+# GITIGNORE - RECICLATECH
+# ============================================
+
+# Configurações do VSCode
+.vscode/
+.vscode/*
+
+# Arquivos do sistema operacional
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Node modules (caso use futuramente)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de log
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+*~
+
+# Arquivos de backup
+*.bak
+*.swp
+*.swo
+
+# Pastas de build (caso use futuramente)
+dist/
+build/
+.cache/
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDEs e Editores
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.iml
+.project
+.classpath
+.settings/
+
+# Arquivos compactados
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
