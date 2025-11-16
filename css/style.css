@@ -781,6 +781,60 @@ body {
   }
 }
 /* 
+   RESPONSIVIDADE - TELAS MÉDIAS (até 900px)
+*/
+@media (max-width: 900px) {
+  .how-works {
+    padding: 60px 0;
+  }
+  .how-works h2 {
+    font-size: 32px;
+  }
+  .how-works .subtitle {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  .how-works .how-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .how-works .how-card {
+    padding: 24px;
+  }
+  .how-works .how-card .how-header .icon-box {
+    width: 48px;
+    height: 48px;
+  }
+  .how-works .how-card .how-header .icon-box img {
+    width: 32px;
+    height: 32px;
+  }
+  .how-works .how-card .how-header h3 {
+    font-size: 20px;
+  }
+  .how-works .how-card .description {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .how-works .how-card .steps {
+    gap: 20px;
+  }
+  .how-works .how-card .step-item {
+    gap: 12px;
+  }
+  .how-works .how-card .step-item .step-number {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+  .how-works .how-card .step-item .step-content h4 {
+    font-size: 15px;
+  }
+  .how-works .how-card .step-item .step-content p {
+    font-size: 13px;
+  }
+}
+/* 
    RESPONSIVIDADE - MOBILE (até 768px)
 */
 @media (max-width: 768px) {

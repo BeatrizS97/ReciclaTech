@@ -928,6 +928,77 @@ body {
 }
 
 /* 
+   RESPONSIVIDADE - TELAS MÉDIAS (até 900px)
+*/
+@media (max-width: 900px) {
+    .how-works {
+        padding: 60px 0;
+
+        h2 {
+            font-size: 32px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .how-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .how-card {
+            padding: 24px;
+
+            .how-header {
+                .icon-box {
+                    width: 48px;
+                    height: 48px;
+
+                    img {
+                        width: 32px;
+                        height: 32px;
+                    }
+                }
+
+                h3 {
+                    font-size: 20px;
+                }
+            }
+
+            .description {
+                font-size: 15px;
+                margin-bottom: 24px;
+            }
+
+            .steps {
+                gap: 20px;
+            }
+
+            .step-item {
+                gap: 12px;
+
+                .step-number {
+                    width: 36px;
+                    height: 36px;
+                    font-size: 14px;
+                }
+
+                .step-content {
+                    h4 {
+                        font-size: 15px;
+                    }
+
+                    p {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
+}
+/* 
    RESPONSIVIDADE - MOBILE (até 768px)
 */
 @media (max-width: 768px) {
