@@ -1,10 +1,11 @@
 @charset "UTF-8";
 /* 
-   Eu defini as variáveis para cores porque no Figma o design usa essas exatas. 
-   Variáveis SCSS (com $) ajudam a manter consistência e facilitar mudanças futuras – se eu quiser trocar o verde, mudo só aqui!
+   Variáveis de Cores
+   Definidas para manter consistência visual e facilitar alterações futuras
 */
 /* 
-   Reset Global: O seletor * zera tudo para evitar problemas de browsers diferentes, 
+   Reset Global
+   Zera margens, paddings e define box-sizing para melhor controle de dimensões
 */
 * {
   margin: 0;
@@ -13,7 +14,8 @@
 }
 
 /* 
-   Body: Configuração base da página
+   Body
+   Configuração base da página com fonte e cor padrão
 */
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -21,7 +23,8 @@ body {
 }
 
 /* 
-   Container Padrão: Limita largura do conteúdo e centraliza
+   Container Padrão
+   Wrapper para limitar largura e centralizar conteúdo
 */
 .container {
   max-width: 1200px;
@@ -30,36 +33,44 @@ body {
 }
 
 /* 
-   Header: Barra de navegação superior
+   Header
+   Cabeçalho fixo com navegação
 */
 .header {
   background: white;
   padding: 16px 0;
   border-bottom: 1px solid #E5E7EB;
 }
-.header .container {
+.header nav.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.header .logo {
+  display: inline-block;
+}
 .header .logo img {
   height: 32px;
 }
-.header .nav {
+.header .nav-menu {
   display: flex;
   align-items: center;
   gap: 32px;
+  list-style: none;
 }
-.header .nav a {
+.header .nav-menu li {
+  display: inline-block;
+}
+.header .nav-menu a {
   color: #4B5563;
   text-decoration: none;
   font-size: 16px;
   transition: color 0.3s;
 }
-.header .nav a:hover {
+.header .nav-menu a:hover {
   color: #16A34A;
 }
-.header .nav .btn-primary {
+.header .nav-menu .btn-primary {
   background: #16A34A;
   color: white;
   border: none;
@@ -70,12 +81,13 @@ body {
   font-weight: 500;
   transition: background 0.3s;
 }
-.header .nav .btn-primary:hover {
+.header .nav-menu .btn-primary:hover {
   background: #15803D;
 }
 
 /* 
-   Hero Section: Seção principal da página com CTA
+   Hero Section
+   Seção principal com destaque e CTAs
 */
 .hero {
   background: white;
@@ -86,27 +98,27 @@ body {
   align-items: center;
   gap: 60px;
 }
-.hero .hero-left {
+.hero .hero-content {
   flex: 1;
 }
-.hero .hero-left h1 {
+.hero .hero-content h1 {
   font-size: 48px;
   font-weight: 700;
   line-height: 1.2;
   color: #1F2937;
   margin-bottom: 20px;
 }
-.hero .hero-left p {
+.hero .hero-content p {
   font-size: 18px;
   color: #4B5563;
   line-height: 1.6;
   margin-bottom: 32px;
 }
-.hero .hero-left .hero-buttons {
+.hero .hero-content .hero-buttons {
   display: flex;
   gap: 16px;
 }
-.hero .hero-left .hero-buttons button {
+.hero .hero-content .hero-buttons button {
   padding: 12px 24px;
   border-radius: 8px;
   font-size: 16px;
@@ -118,46 +130,42 @@ body {
   border: none;
   transition: all 0.3s;
 }
-.hero .hero-left .hero-buttons button img {
-  filter: brightness(0) invert(1);
-}
-.hero .hero-left .hero-buttons .btn-doar {
+.hero .hero-content .hero-buttons .btn-doar {
   background: #16A34A;
   color: white;
 }
-.hero .hero-left .hero-buttons .btn-doar img {
+.hero .hero-content .hero-buttons .btn-doar img {
   filter: brightness(0) invert(1);
 }
-.hero .hero-left .hero-buttons .btn-doar:hover {
+.hero .hero-content .hero-buttons .btn-doar:hover {
   background: #15803D;
 }
-.hero .hero-left .hero-buttons .btn-adquirir {
+.hero .hero-content .hero-buttons .btn-adquirir {
   background: white;
   color: #2563EB;
   border: 2px solid #2563EB;
 }
-.hero .hero-left .hero-buttons .btn-adquirir img {
-  filter: none;
-}
-.hero .hero-left .hero-buttons .btn-adquirir:hover {
+.hero .hero-content .hero-buttons .btn-adquirir:hover {
   background: #2563EB;
   color: white;
 }
-.hero .hero-left .hero-buttons .btn-adquirir:hover img {
+.hero .hero-content .hero-buttons .btn-adquirir:hover img {
   filter: brightness(0) invert(1);
 }
-.hero .hero-right {
+.hero .hero-image {
   flex: 1;
   display: flex;
   justify-content: center;
+  margin: 0;
 }
-.hero .hero-right .recycle-icon {
+.hero .hero-image .recycle-icon {
   max-width: 100%;
   height: auto;
 }
 
 /* 
-   Stats Section:  Seção de estatísticas e números
+   Stats Section
+   Seção de estatísticas com números de impacto
 */
 .stats {
   background: #F3F5F8;
@@ -183,7 +191,8 @@ body {
 }
 
 /* 
-   Como Funciona Section: Seção explicativa do processo
+   Como Funciona Section
+   Explicação do processo para doadores e adquirentes
 */
 .how-works {
   padding: 80px 0;
@@ -262,6 +271,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  list-style: none;
 }
 .how-works .how-card .step-item {
   display: flex;
@@ -294,7 +304,8 @@ body {
 }
 
 /* 
-   Products Section: Seção de produtos disponíveis
+   Products Section
+   Grid de produtos disponíveis
 */
 .products {
   padding: 80px 0;
@@ -322,7 +333,7 @@ body {
   gap: 32px;
 }
 .products .product-card {
-  background: #fff;
+  background: white;
   border: 2px solid #16A34A;
   border-radius: 12px;
   padding: 24px;
@@ -339,10 +350,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 0 0 20px;
   border-radius: 8px;
   overflow: hidden;
-  background: transparent;
 }
 .products .product-card .product-image img {
   width: 100%;
@@ -379,7 +389,8 @@ body {
 }
 
 /* 
-   Testimoials Section: Seção de depoimentos de usuários
+   Testimonials Section
+   Depoimentos de usuários
 */
 .testimonials {
   padding: 80px 0;
@@ -419,7 +430,10 @@ body {
   font-size: 18px;
   margin-bottom: 16px;
 }
-.testimonials .testimonial-card p {
+.testimonials .testimonial-card blockquote {
+  margin: 0;
+}
+.testimonials .testimonial-card blockquote p {
   font-size: 16px;
   color: #1F2937;
   line-height: 1.6;
@@ -463,7 +477,8 @@ body {
 }
 
 /* 
-   CTA Section: Chamada de ação
+   CTA Section
+   Chamada final para ação
 */
 .cta {
   padding: 80px 0;
@@ -514,7 +529,8 @@ body {
 }
 
 /* 
-   Footer: Rodapé da página
+   Footer
+   Rodapé com informações e links
 */
 .footer {
   background: #1F2937;
@@ -550,6 +566,9 @@ body {
   font-weight: 600;
   margin-bottom: 16px;
 }
+.footer .footer-col ul {
+  list-style: none;
+}
 .footer .footer-col a {
   display: block;
   color: white;
@@ -571,6 +590,7 @@ body {
   display: flex;
   gap: 12px;
   margin-top: 16px;
+  list-style: none;
 }
 .footer .footer-col .social-links .social {
   width: 40px;
@@ -601,19 +621,18 @@ body {
   width: 20px;
   height: 20px;
 }
-
-.footer-bottom {
+.footer .footer-bottom {
   padding: 24px 0;
   text-align: center;
 }
-
-.footer-copyright {
+.footer .footer-copyright {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.6);
 }
 
 /* 
-   Responsividade: Ajustes para telas médias (Tablet: até 1024px) - Integra ajustes de products de 992px
+   RESPONSIVIDADE - TABLET
+   Ajustes para telas médias até 1024px
 */
 @media (max-width: 1024px) {
   .container {
@@ -624,7 +643,7 @@ body {
     gap: 40px;
     text-align: center;
   }
-  .hero .hero-left .hero-buttons {
+  .hero .hero-content .hero-buttons {
     justify-content: center;
   }
   .how-grid {
@@ -677,7 +696,7 @@ body {
   .footer {
     padding: 50px 0 25px;
   }
-  .hero-left h1 {
+  .hero-content h1 {
     font-size: 40px;
   }
   .how-works h2,
@@ -697,21 +716,20 @@ body {
   .stat-card h2 {
     font-size: 40px;
   }
-  .how-card {
-    padding: 28px;
-  }
+  .how-card,
   .testimonial-card {
     padding: 28px;
   }
 }
 /* 
-   Responsividade: Ajustes para telas pequenas (Mobile: até 768px) - Integra ajustes de products de 600px
+   RESPONSIVIDADE - MOBILE
+   Ajustes para telas pequenas até 768px
 */
 @media (max-width: 768px) {
   .container {
     padding: 0 18px;
   }
-  .header .nav {
+  .header .nav-menu {
     display: none;
   }
   .header {
@@ -723,10 +741,10 @@ body {
   .hero {
     padding: 60px 0;
   }
-  .hero .hero-left h1 {
+  .hero .hero-content h1 {
     font-size: 32px;
   }
-  .hero .hero-left p {
+  .hero .hero-content p {
     font-size: 16px;
   }
   .hero .hero-buttons {
@@ -742,7 +760,7 @@ body {
     padding: 12px 24px;
     font-size: 16px;
   }
-  .hero .hero-right .recycle-icon {
+  .hero .hero-image .recycle-icon {
     max-width: 80%;
   }
   .stats .container {
@@ -846,7 +864,7 @@ body {
     font-size: 16px;
     margin-bottom: 12px;
   }
-  .testimonial-card p {
+  .testimonial-card blockquote p {
     font-size: 15px;
     margin-bottom: 20px;
   }
@@ -889,40 +907,40 @@ body {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  .footer-col .footer-logo {
+  .footer .footer-col .footer-logo {
     font-size: 16px;
   }
-  .footer-col .footer-logo img {
+  .footer .footer-col .footer-logo img {
     height: 24px;
   }
-  .footer-col p, .footer-col a {
+  .footer .footer-col p,
+  .footer .footer-col a {
     font-size: 13px;
   }
-  .footer-col h4 {
+  .footer .footer-col h4 {
     font-size: 15px;
   }
-  .footer-col .social-links {
+  .footer .footer-col .social-links {
     gap: 10px;
   }
-  .footer-col .social {
+  .footer .footer-col .social-links .social {
     width: 36px;
     height: 36px;
   }
-  .footer-col .social svg {
+  .footer .footer-col .social-links .social svg {
     width: 18px;
     height: 18px;
   }
-  .footer-bottom {
+  .footer .footer-bottom {
     padding: 20px 0;
   }
-  .footer-copyright {
+  .footer .footer-copyright {
     font-size: 13px;
   }
 }
 /* 
-   RESPONSIVE - SMALL MOBILE
-   Ajustes para telas muito pequenas
-   CORREÇÃO 1: Melhorias extras de responsividade - Integra ajustes de products de 400px
+   RESPONSIVIDADE - MOBILE PEQUENO
+   Ajustes para telas muito pequenas até 480px
 */
 @media (max-width: 480px) {
   .container {
@@ -937,28 +955,20 @@ body {
   .hero {
     padding: 50px 0;
   }
-  .hero .hero-left h1 {
+  .hero .hero-content h1 {
     font-size: 26px;
     line-height: 1.2;
   }
-  .hero .hero-left p {
+  .hero .hero-content p {
     font-size: 14px;
     margin-bottom: 24px;
   }
-  .hero .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
-  }
   .hero .hero-buttons button {
-    width: 100%;
     max-width: 280px;
-    margin: 0 auto;
     padding: 10px 20px;
     font-size: 14px;
-    justify-content: center;
   }
-  .hero .hero-right .recycle-icon {
+  .hero .hero-image .recycle-icon {
     max-width: 70%;
   }
   .stats {
@@ -1054,7 +1064,7 @@ body {
     font-size: 14px;
     margin-bottom: 10px;
   }
-  .testimonial-card p {
+  .testimonial-card blockquote p {
     font-size: 14px;
     margin-bottom: 16px;
   }
@@ -1075,9 +1085,6 @@ body {
   .testimonial-card .author .author-info span {
     font-size: 10px;
   }
-  .cta .cta-buttons {
-    gap: 10px;
-  }
   .cta .cta-buttons button {
     padding: 10px 20px;
     font-size: 14px;
@@ -1092,7 +1099,8 @@ body {
   .footer .footer-col .footer-logo img {
     height: 22px;
   }
-  .footer .footer-col p, .footer .footer-col a {
+  .footer .footer-col p,
+  .footer .footer-col a {
     font-size: 12px;
   }
   .footer .footer-col h4 {
@@ -1106,10 +1114,10 @@ body {
     width: 16px;
     height: 16px;
   }
+  .footer .footer-bottom {
+    padding: 16px 0;
+  }
   .footer .footer-copyright {
     font-size: 12px;
-  }
-  .footer-bottom {
-    padding: 16px 0;
   }
 }/*# sourceMappingURL=style.css.map */
